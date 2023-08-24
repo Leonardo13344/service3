@@ -10,7 +10,7 @@ import java.util.List;
 @ApplicationScoped
 public class SingerInstrumentRepo {
 
-    @PersistenceContext(unitName = "restapi_PU")
+    @PersistenceContext(unitName = "servicio3")
     EntityManager em;
 
     public List<SingerInstrument> findAll() {
