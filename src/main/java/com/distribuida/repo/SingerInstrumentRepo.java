@@ -49,6 +49,14 @@ public class SingerInstrumentRepo {
                 .getResultList();
     }
 
+    //find by Singer id and Instrument id
+    public SingerInstrument findByIds(Integer id, Integer id2) {
+        return em.createQuery("SELECT s FROM SingerInstrument s WHERE s.singerId = :id AND s.instrumentId = :id2", SingerInstrument.class)
+                .setParameter("id", id)
+                .setParameter("id2", id2)
+                .getSingleResult();
+    }
+
 
 
 
