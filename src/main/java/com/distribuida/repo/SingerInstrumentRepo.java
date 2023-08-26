@@ -13,9 +13,7 @@ public class SingerInstrumentRepo {
     @PersistenceContext(unitName = "servicio3")
     EntityManager em;
 
-    public List<SingerInstrument> findAll() {
-        return em.createQuery("SELECT s FROM SingerInstrument s", SingerInstrument.class).getResultList();
-    }
+
 
     public SingerInstrument findById(Integer id) {
         return em.find(SingerInstrument.class, id);
@@ -26,9 +24,7 @@ public class SingerInstrumentRepo {
         return singerInstrument;
     }
 
-    public SingerInstrument update(SingerInstrument singerInstrument) {
-        return em.merge(singerInstrument);
-    }
+
 
     public void delete(Integer id) {
         SingerInstrument singerInstrument = em.find(SingerInstrument.class, id);
@@ -49,13 +45,8 @@ public class SingerInstrumentRepo {
                 .getResultList();
     }
 
-    //find by Singer id and Instrument id
-    public SingerInstrument findByIds(Integer id, Integer id2) {
-        return em.createQuery("SELECT s FROM SingerInstrument s WHERE s.singerId = :id AND s.instrumentId = :id2", SingerInstrument.class)
-                .setParameter("id", id)
-                .setParameter("id2", id2)
-                .getSingleResult();
-    }
+
+
 
 
 

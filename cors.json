@@ -1,0 +1,12 @@
+{
+  "crossDomain": {
+    "crossDomainList": [
+      {
+        "allowMethods": ["GET", "POST", "PUT", "DELETE"],
+        "allowHeaders": ["Content-Type"],
+        "allowCredentials": true,
+        "allowOrigins": ["*"]
+      }
+    ]
+  }
+}
