@@ -10,6 +10,8 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.faulttolerance.Retry;
 import org.eclipse.microprofile.faulttolerance.Timeout;
+import org.eclipse.microprofile.metrics.annotation.Counted;
+import org.eclipse.microprofile.metrics.annotation.Timed;
 
 import java.util.List;
 
@@ -28,6 +30,7 @@ public class SingerInstrumentRest {
     @Timeout(4000)
     @Retry(maxRetries = 2)
     @Path("/singer/{id}")
+    @Counted(name = "countGetBySingerId", description = "How many times the getBySingerId method has been invoked")
     public List<SingerInstrument> findBySingerId(@PathParam("id") Integer id){
         return rep.findBySingerId(id);
     }
@@ -36,6 +39,7 @@ public class SingerInstrumentRest {
     @Timeout(4000)
     @Retry(maxRetries = 2)
     @Path("/instrument/{id}")
+    @Counted(name = "countGetByInstrumentId", description = "How many times the getByInstrumentId method has been invoked")
     public List<SingerInstrument> findByInstrumentId(@PathParam("id") Integer id){
         return rep.findByInstrumentId(id);
     }
@@ -43,6 +47,7 @@ public class SingerInstrumentRest {
     @POST
     @Timeout(4000)
     @Retry(maxRetries = 2)
+    @Timed(name = "timeCreate", description = "A measure of how long it takes to create a SingerInstrument", unit = "milliseconds")
     public Response create(SingerInstrument obj) {
         rep.create(obj);
         return Response.ok(obj).status(Response.Status.CREATED).build();
@@ -52,6 +57,7 @@ public class SingerInstrumentRest {
     @Timeout(4000)
     @Retry(maxRetries = 2)
     @Path("/{id}")
+    @Timed(name = "timeDelete", description = "A measure of how long it takes to delete a SingerInstrument", unit = "milliseconds")
     public Response delete(@PathParam("id") Integer id) {
         var obj = rep.findById(id);
         if (obj == null) {
